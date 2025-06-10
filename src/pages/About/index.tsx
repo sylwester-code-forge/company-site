@@ -1,5 +1,6 @@
 import { Layout } from "../../components/Layout";
 import { Link } from "react-router-dom";
+import Teamwork from "../../assets/images/teamwork.jpg";
 
 export const About = () => {
   const team = [
@@ -105,7 +106,7 @@ export const About = () => {
                 <div className="absolute -top-4 -left-4 w-72 h-72 bg-blue-400 rounded-full mix-blend-multiply filter blur-xl opacity-10 animate-blob"></div>
                 <div className="absolute -bottom-4 -right-4 w-72 h-72 bg-blue-600 rounded-full mix-blend-multiply filter blur-xl opacity-10 animate-blob animation-delay-2000"></div>
                 <img 
-                  src="/about-image.jpg" 
+                  src={Teamwork} 
                   alt="Code Forge Team" 
                   className="relative rounded-xl shadow-xl w-full h-auto"
                 />
