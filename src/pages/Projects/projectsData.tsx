@@ -1,10 +1,16 @@
+import Health from "../../assets/images/health.jpg";
+import Retail from "../../assets/images/retail.jpg";
+import Fintech from "../../assets/images/fintech.jpg";
+import Cloud from "../../assets/images/cloud.jpg";
+import Ecommerce from "../../assets/images/ecommerce.jpg";
+import Business from "../../assets/images/business.jpeg";
 export const projectsData = [
   {
     id: 1,
     title: "HealthTech Patient Portal",
     slug: "health-tech-portal",
     category: "web-development",
-    image: "/project-1.jpg",
+    image: Health,
     client: "MediCare Solutions",
     description: "A comprehensive patient management portal for healthcare providers, enabling secure communication and record management.",
     longDescription: "The HealthTech Patient Portal is a secure, HIPAA-compliant web application designed to streamline patient-provider communication, appointment scheduling, and medical record management. This platform has revolutionized how MediCare Solutions' network of healthcare providers interact with their patients, significantly reducing administrative overhead while improving patient satisfaction and engagement.",
@@ -37,7 +43,7 @@ export const projectsData = [
     title: "Retail Inventory System",
     slug: "retail-inventory",
     category: "web-development",
-    image: "/project-2.jpg",
+    image: Retail,
     client: "Global Retail Inc.",
     description: "A full-featured inventory management system for retail chains with real-time tracking and analytics.",
     longDescription: "The Retail Inventory System is a comprehensive solution that modernized Global Retail Inc.'s inventory management across their 200+ store locations. This cloud-based system provides real-time inventory visibility, predictive analytics for stock optimization, and seamless integration with point-of-sale systems, transforming their supply chain operations.",
@@ -70,7 +76,7 @@ export const projectsData = [
     title: "FinTech Mobile App",
     slug: "fintech-app",
     category: "mobile-apps",
-    image: "/project-3.jpg",
+    image: Fintech,
     client: "SecurePay Financial",
     description: "A secure mobile banking application with biometric authentication and advanced transaction capabilities.",
     longDescription: "The SecurePay FinTech mobile application provides customers with a comprehensive suite of banking and financial management tools in the palm of their hand. With industry-leading security features and an intuitive user interface, this app has transformed how SecurePay Financial engages with its customers, resulting in significant growth in mobile transactions and customer satisfaction.",
@@ -103,7 +109,7 @@ export const projectsData = [
     title: "Cloud Migration Project",
     slug: "cloud-migration",
     category: "cloud-solutions",
-    image: "/project-4.jpg",
+    image: Cloud,
     client: "Enterprise Data Corp",
     description: "Migration of legacy systems to a scalable cloud infrastructure, improving performance and reducing costs.",
     longDescription: "This comprehensive cloud migration project moved Enterprise Data Corp's critical applications and data from on-premises infrastructure to a modern, scalable cloud environment. The migration was completed with minimal disruption to business operations while significantly improving system performance, reliability, and security while reducing overall IT costs.",
@@ -136,7 +142,7 @@ export const projectsData = [
     title: "E-Commerce Platform",
     slug: "ecommerce-platform",
     category: "web-development",
-    image: "/project-5.jpg",
+    image: Ecommerce,
     client: "Fashion Forward",
     description: "A modern e-commerce platform with advanced product filtering, user personalization, and secure payment processing.",
     longDescription: "The Fashion Forward e-commerce platform is a complete online retail solution that combines stunning visual design with powerful backend functionality. This custom-built platform has enabled Fashion Forward to showcase their products effectively, personalize the shopping experience, and streamline order fulfillment, resulting in significant revenue growth and customer retention.",
@@ -169,7 +175,7 @@ export const projectsData = [
     title: "Business Intelligence Dashboard",
     slug: "bi-dashboard",
     category: "data-analytics",
-    image: "/project-6.jpg",
+    image: Business,
     client: "Data Insights Co.",
     description: "An interactive dashboard for visualizing complex business data, enabling informed decision-making across departments.",
     longDescription: "The Business Intelligence Dashboard for Data Insights Co. is a sophisticated analytics platform that transforms complex data into actionable insights through intuitive visualizations and interactive reports. This powerful tool has enabled executives and department managers to make data-driven decisions faster and with greater confidence, resulting in improved business performance across all key metrics.",

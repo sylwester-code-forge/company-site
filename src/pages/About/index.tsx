@@ -1,6 +1,10 @@
 import { Layout } from "../../components/Layout";
 import { Link } from "react-router-dom";
 import Teamwork from "../../assets/images/teamwork.jpg";
+import Team1 from "../../assets/images/1.jpg";
+import Team2 from "../../assets/images/2.png";
+import Team3 from "../../assets/images/3.png";
+import Team4 from "../../assets/images/4.png";
 
 export const About = () => {
   const team = [
@@ -8,25 +12,25 @@ export const About = () => {
       name: "Alex Johnson",
       position: "CEO & Founder",
       bio: "With over 15 years in the tech industry, Alex founded Code Forge with a vision to create innovative solutions that transform businesses.",
-      image: "/team-1.jpg",
+      image: Team1,
     },
     {
-      name: "Samantha Chen",
+      name: "Lucas Martin",
       position: "CTO",
-      bio: "Samantha leads our technical strategy and ensures we're always at the forefront of emerging technologies and best practices.",
-      image: "/team-2.jpg",
+      bio: "Lucas leads our technical strategy and ensures we're always at the forefront of emerging technologies and best practices.",
+      image: Team2,
     },
     {
       name: "David Rodriguez",
       position: "Lead Developer",
       bio: "David oversees our development team, bringing extensive experience in building scalable and robust applications.",
-      image: "/team-3.jpg",
+      image: Team3,
     },
     {
       name: "Emma Williams",
       position: "UX/UI Director",
       bio: "Emma ensures all our products deliver exceptional user experiences through thoughtful design and usability principles.",
-      image: "/team-4.jpg",
+      image: Team4,
     },
   ];
 

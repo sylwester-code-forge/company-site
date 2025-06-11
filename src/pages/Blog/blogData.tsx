@@ -1,3 +1,7 @@
+import Blog1 from "../../assets/images/blog1.jpeg";
+import Blog2 from "../../assets/images/blog2.jpg";
+import Blog3 from "../../assets/images/blog3.jpg";
+
 export const blogData = [
   {
     id: 1,
@@ -5,10 +9,10 @@ export const blogData = [
     slug: "future-of-cloud-computing-2023",
     category: "cloud",
     date: "June 15, 2023",
-    author: "Samantha Chen",
+    author: "Lucas Martin",
     authorRole: "CTO",
     excerpt: "Explore the latest trends in cloud computing and how they're shaping the future of business technology infrastructure.",
-    image: "/blog-1.jpg",
+    image: Blog1,
     readTime: "8 min read",
     content: `
       <h2>The Evolving Cloud Landscape</h2>
@@ -61,7 +65,7 @@ export const blogData = [
     author: "David Rodriguez",
     authorRole: "Lead Developer",
     excerpt: "Learn the essential security practices that every web developer should implement to protect applications from common vulnerabilities.",
-    image: "/blog-2.jpg",
+    image: Blog2,
     readTime: "12 min read",
     content: `
       <h2>Security as a Foundation, Not an Afterthought</h2>
@@ -178,7 +182,7 @@ export const blogData = [
     author: "Emma Williams",
     authorRole: "UX/UI Director",
     excerpt: "Discover how Progressive Web Apps are changing the way businesses approach mobile strategy and user experience.",
-    image: "/blog-3.jpg",
+    image: Blog3,
     readTime: "10 min read",
     content: `
       <h2>Bridging the Gap Between Web and Native</h2>

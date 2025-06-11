@@ -4,6 +4,9 @@ import { ServiceCard } from "../components/ServiceCard";
 import { StatsSection } from "../components/StatsSection";
 import { TestimonialCard } from "../components/TestimonialCard";
 import { Link } from "react-router-dom";
+import Review1 from "../assets/images/review1.png";
+import Review2 from "../assets/images/review2.png";
+import Review3 from "../assets/images/review3.png";
 
 export const Home: React.FC = () => {
   const services = [
@@ -55,21 +58,21 @@ export const Home: React.FC = () => {
       position: "CTO",
       company: "TechStart Inc.",
       testimonial: "Code Forge transformed our business with their innovative web solutions. They delivered exactly what we needed on time and within budget.",
-      avatar: "/testimonial-1.jpg",
+      avatar: Review1,
     },
     {
       name: "Michael Chen",
       position: "CEO",
       company: "GrowthBox",
       testimonial: "Working with Code Forge on our mobile app was a game-changer. Their expertise and attention to detail resulted in a product that exceeded our expectations.",
-      avatar: "/testimonial-2.jpg",
+      avatar: Review2,
     },
     {
-      name: "Emily Rodriguez",
+      name: "Mark Rodriguez",
       position: "Product Manager",
       company: "InnovateCorp",
       testimonial: "The cloud migration handled by Code Forge was seamless. Their team's knowledge and support throughout the process was invaluable to our company.",
-      avatar: "/testimonial-3.jpg",
+      avatar: Review3,
     },
   ];
 

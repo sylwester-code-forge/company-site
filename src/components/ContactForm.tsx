@@ -21,28 +21,43 @@ export const ContactForm = () => {
     }));
   };
   
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
     
-    // Simulate form submission
-    setTimeout(() => {
-      setIsSubmitting(false);
-      setIsSubmitted(true);
-      setFormData({
-        name: "",
-        email: "",
-        phone: "",
-        company: "",
-        message: "",
-        service: "",
+    try {
+      const response = await fetch("https://formspree.io/f/mblygnyl", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
       });
       
-      // Reset success message after 5 seconds
-      setTimeout(() => {
-        setIsSubmitted(false);
-      }, 5000);
-    }, 1500);
+      if (response.ok) {
+        setIsSubmitting(false);
+        setIsSubmitted(true);
+        setFormData({
+          name: "",
+          email: "",
+          phone: "",
+          company: "",
+          message: "",
+          service: "",
+        });
+        
+        // Reset success message after 5 seconds
+        setTimeout(() => {
+          setIsSubmitted(false);
+        }, 5000);
+      } else {
+        throw new Error("Form submission failed");
+      }
+    } catch (error) {
+      setIsSubmitting(false);
+      alert("There was an error submitting the form. Please try again.");
+      console.error("Form submission error:", error);
+    }
   };
   
   return (
@@ -60,7 +75,7 @@ export const ContactForm = () => {
           </p>
         </div>
       ) : (
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} action="https://formspree.io/f/mblygnyl" method="POST">
           <h3 className="text-2xl font-bold text-slate-800 dark:text-white mb-6">Get in Touch</h3>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">

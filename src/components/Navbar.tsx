@@ -57,7 +57,7 @@ export const Navbar = () => {
   ];
 
   return (
-    <nav className="bg-slate-800 text-white py-4 px-6 shadow-md fixed w-full z-10">
+    <nav className="bg-slate-800 text-white py-4 px-6 shadow-md fixed w-full z-20">
       <div className="container mx-auto flex justify-between items-center">
         <motion.div
           initial="initial"
