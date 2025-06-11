@@ -131,10 +131,10 @@ export const ProjectDetail = () => {
               transition={{ delay: 0.2 }}
             >
               <span className="text-sm font-medium bg-blue-500/30 text-blue-200 py-1 px-3 rounded-full">
-                {project.category}
+                {project.category.split("-").map((word: string) => word.charAt(0).toUpperCase() + word.slice(1)).join(" ")}
               </span>
               <span className="text-sm text-blue-200">
-                {project.completionDate}
+                Client: {project.client}
               </span>
             </motion.div>
             <motion.h1 
@@ -143,7 +143,7 @@ export const ProjectDetail = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3 }}
             >
-              {project.name}
+              {project.title}
             </motion.h1>
             <motion.p 
               className="text-xl text-blue-100 mb-8"
@@ -159,13 +159,13 @@ export const ProjectDetail = () => {
               animate={{ opacity: 1 }}
               transition={{ delay: 0.5 }}
             >
-              {project.tags.map((tag: string, index: number) => (
+              {project.technologies.slice(0, 5).map((tech: string, index: number) => (
                 <motion.span 
                   key={index}
                   className="bg-slate-700/50 text-blue-200 text-sm py-1 px-3 rounded-full"
                   whileHover={{ scale: 1.1, backgroundColor: "rgba(59, 130, 246, 0.3)" }}
                 >
-                  {tag}
+                  {tech}
                 </motion.span>
               ))}
             </motion.div>
@@ -177,45 +177,22 @@ export const ProjectDetail = () => {
       <section className="py-16 bg-white dark:bg-slate-900">
         <div className="container mx-auto px-6">
           <div className="max-w-4xl mx-auto">
-            {/* Project Gallery */}
+            {/* Project Image */}
             <motion.div 
               className="mb-16"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.6 }}
             >
-              <h2 className="text-2xl font-bold mb-8 text-slate-800 dark:text-white">Project Gallery</h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <motion.div 
-                  className="rounded-xl overflow-hidden shadow-lg"
+              <div className="rounded-xl overflow-hidden shadow-lg">
+                <motion.img 
+                  src={project.image} 
+                  alt={project.title} 
+                  className="w-full h-auto object-cover"
                   variants={imageVariants}
                   initial="hidden"
                   animate="visible"
-                  whileHover={{ scale: 1.03, transition: { duration: 0.2 } }}
-                >
-                  <img 
-                    src={project.image} 
-                    alt={project.name} 
-                    className="w-full h-auto object-cover"
-                  />
-                </motion.div>
-                {project.additionalImages && project.additionalImages.map((img: string, index: number) => (
-                  <motion.div 
-                    key={index} 
-                    className="rounded-xl overflow-hidden shadow-lg"
-                    variants={imageVariants}
-                    initial="hidden"
-                    animate="visible"
-                    transition={{ delay: 0.3 * (index + 1) }}
-                    whileHover={{ scale: 1.03, transition: { duration: 0.2 } }}
-                  >
-                    <img 
-                      src={img} 
-                      alt={`${project.name} ${index + 1}`} 
-                      className="w-full h-auto object-cover"
-                    />
-                  </motion.div>
-                ))}
+                />
               </div>
             </motion.div>
 
@@ -228,11 +205,52 @@ export const ProjectDetail = () => {
             >
               <h2 className="text-2xl font-bold mb-6 text-slate-800 dark:text-white">Project Overview</h2>
               <div className="prose prose-lg max-w-none dark:prose-invert">
-                <div dangerouslySetInnerHTML={{ __html: project.overview }}></div>
+                <p>{project.longDescription}</p>
               </div>
             </motion.div>
 
-            {/* Project Features */}
+            {/* Challenge and Solution */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-10 mb-16">
+              <motion.div
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.8 }}
+              >
+                <h2 className="text-2xl font-bold mb-6 text-slate-800 dark:text-white">The Challenge</h2>
+                <p className="text-slate-600 dark:text-slate-300">{project.challenge}</p>
+              </motion.div>
+              
+              <motion.div
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.9 }}
+              >
+                <h2 className="text-2xl font-bold mb-6 text-slate-800 dark:text-white">Our Solution</h2>
+                <p className="text-slate-600 dark:text-slate-300">{project.solution}</p>
+              </motion.div>
+            </div>
+
+            {/* Technologies Used */}
+            <motion.div 
+              className="mb-16"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 1.0 }}
+            >
+              <h2 className="text-2xl font-bold mb-6 text-slate-800 dark:text-white">Technologies Used</h2>
+              <div className="flex flex-wrap gap-3">
+                {project.technologies.map((tech: string, index: number) => (
+                  <span 
+                    key={index}
+                    className="bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 py-2 px-4 rounded-lg text-sm font-medium"
+                  >
+                    {tech}
+                  </span>
+                ))}
+              </div>
+            </motion.div>
+
+            {/* Key Features */}
             <motion.div 
               className="mb-16"
               variants={staggerContainer}
@@ -241,77 +259,69 @@ export const ProjectDetail = () => {
             >
               <h2 className="text-2xl font-bold mb-8 text-slate-800 dark:text-white">Key Features</h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                {project.features.map((feature: any, index: number) => (
+                {project.features.map((feature: string, index: number) => (
                   <motion.div 
                     key={index} 
-                    className="bg-slate-50 dark:bg-slate-800 p-6 rounded-xl"
+                    className="bg-slate-50 dark:bg-slate-800 p-6 rounded-xl shadow-sm"
                     variants={featureVariants}
-                    whileHover={{ 
-                      y: -5, 
-                      boxShadow: "0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)" 
-                    }}
+                    whileHover={{ y: -5, boxShadow: "0 10px 25px -5px rgba(0, 0, 0, 0.1)" }}
                   >
-                    <h3 className="text-xl font-bold mb-3 text-slate-800 dark:text-white">{feature.title}</h3>
-                    <p className="text-slate-600 dark:text-slate-300">{feature.description}</p>
+                    <div className="flex items-start">
+                      <div className="text-blue-500 mr-4 mt-1">
+                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                      </div>
+                      <p className="text-slate-700 dark:text-slate-300">{feature}</p>
+                    </div>
                   </motion.div>
                 ))}
               </div>
             </motion.div>
 
-            {/* Technical Details */}
+            {/* Results */}
             <motion.div 
               className="mb-16"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.9 }}
+              transition={{ delay: 1.1 }}
             >
-              <h2 className="text-2xl font-bold mb-6 text-slate-800 dark:text-white">Technical Details</h2>
-              <div className="bg-slate-50 dark:bg-slate-800 p-8 rounded-xl">
-                <h3 className="text-xl font-bold mb-4 text-slate-800 dark:text-white">Technologies Used</h3>
-                <div className="flex flex-wrap gap-3 mb-8">
-                  {project.technologies.map((tech: string, index: number) => (
-                    <motion.span 
-                      key={index} 
-                      className="bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 font-medium py-1 px-3 rounded-full text-sm"
-                      initial={{ opacity: 0, scale: 0.8 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      transition={{ delay: 0.2 + (index * 0.05) }}
-                      whileHover={{ scale: 1.1 }}
-                    >
-                      {tech}
-                    </motion.span>
+              <h2 className="text-2xl font-bold mb-8 text-slate-800 dark:text-white">Project Results</h2>
+              <div className="bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-slate-800 dark:to-blue-900/30 p-8 rounded-2xl">
+                <ul className="space-y-4">
+                  {project.results.map((result: string, index: number) => (
+                    <li key={index} className="flex items-start">
+                      <div className="text-green-500 mr-4 mt-1">
+                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                        </svg>
+                      </div>
+                      <p className="text-slate-700 dark:text-white">{result}</p>
+                    </li>
                   ))}
-                </div>
-                {project.technical && (
-                  <div className="prose prose-lg max-w-none dark:prose-invert">
-                    <div dangerouslySetInnerHTML={{ __html: project.technical }}></div>
-                  </div>
-                )}
+                </ul>
               </div>
             </motion.div>
 
-            {/* Client Testimonial */}
+            {/* Testimonial */}
             {project.testimonial && (
               <motion.div 
                 className="mb-16"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 1 }}
-                whileHover={{ scale: 1.02 }}
+                transition={{ delay: 1.2 }}
               >
-                <div className="bg-blue-600 text-white p-8 rounded-xl relative">
-                  <svg className="absolute top-4 left-4 w-12 h-12 text-blue-400/30" fill="currentColor" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M10 8c-2.209 0-4 1.791-4 4v10c0 2.209 1.791 4 4 4h12c2.209 0 4-1.791 4-4v-10c0-2.209-1.791-4-4-4h-12zM2 4v10c0 1.105 0.895 2 2 2s2-0.895 2-2v-6c0-1.105 0.895-2 2-2h16c1.105 0 2 0.895 2 2v6c0 1.105 0.895 2 2 2s2-0.895 2-2v-10c0-1.105-0.895-2-2-2h-24c-1.105 0-2 0.895-2 2z"></path>
-                  </svg>
-                  <div className="pl-8">
-                    <p className="text-xl mb-6 italic text-blue-100">{project.testimonial.quote}</p>
-                    <div className="flex items-center">
-                      <div className="w-12 h-12 bg-white rounded-full mr-4 flex items-center justify-center text-blue-600 font-bold">
-                        {project.testimonial.author.split(" ").map((n: string) => n[0]).join("")}
-                      </div>
+                <h2 className="text-2xl font-bold mb-8 text-slate-800 dark:text-white">Client Testimonial</h2>
+                <div className="bg-white dark:bg-slate-800 p-8 rounded-2xl shadow-lg border border-slate-100 dark:border-slate-700">
+                  <div className="flex flex-col md:flex-row md:items-center gap-6">
+                    <div className="flex-1">
+                      <svg className="text-blue-500 w-10 h-10 mb-4" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
+                      </svg>
+                      <p className="text-slate-600 dark:text-slate-300 text-lg italic mb-4">{project.testimonial.quote}</p>
                       <div>
-                        <p className="font-bold">{project.testimonial.author}</p>
-                        <p className="text-sm text-blue-200">{project.testimonial.role}, {project.testimonial.company}</p>
+                        <h4 className="font-bold text-slate-800 dark:text-white">{project.testimonial.author}</h4>
+                        <p className="text-slate-500 dark:text-slate-400">{project.testimonial.title}</p>
                       </div>
                     </div>
                   </div>
@@ -319,40 +329,21 @@ export const ProjectDetail = () => {
               </motion.div>
             )}
 
-            {/* Project Results/Outcomes */}
-            {project.results && (
-              <motion.div 
-                className="mb-16"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 1.1 }}
-              >
-                <h2 className="text-2xl font-bold mb-6 text-slate-800 dark:text-white">Results & Impact</h2>
-                <div className="prose prose-lg max-w-none dark:prose-invert">
-                  <div dangerouslySetInnerHTML={{ __html: project.results }}></div>
-                </div>
-              </motion.div>
-            )}
-
-            {/* Call to Action */}
-            <motion.div 
-              className="mb-16 text-center"
+            {/* CTA */}
+            <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 1.2 }}
+              transition={{ delay: 1.3 }}
+              className="bg-blue-600 text-white p-8 rounded-2xl text-center"
             >
-              <h2 className="text-2xl font-bold mb-6 text-slate-800 dark:text-white">Interested in a similar project?</h2>
-              <p className="text-lg text-slate-600 dark:text-slate-300 mb-8">
-                Contact us today to discuss how we can help bring your vision to life.
-              </p>
-              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                <Link 
-                  to="/contact" 
-                  className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-lg transition-colors duration-300"
-                >
-                  Get in Touch
-                </Link>
-              </motion.div>
+              <h3 className="text-2xl font-bold mb-4">Ready to Start Your Project?</h3>
+              <p className="mb-6">Let's discuss how we can help bring your ideas to life.</p>
+              <Link 
+                to="/contact" 
+                className="inline-block bg-white text-blue-600 hover:bg-blue-50 font-bold py-3 px-8 rounded-lg transition-colors duration-300"
+              >
+                Contact Us
+              </Link>
             </motion.div>
           </div>
         </div>
@@ -360,54 +351,40 @@ export const ProjectDetail = () => {
 
       {/* Related Projects */}
       {relatedProjects.length > 0 && (
-        <motion.section 
-          className="py-16 bg-slate-50 dark:bg-slate-800"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.3, duration: 0.6 }}
-        >
+        <section className="py-16 bg-slate-50 dark:bg-slate-800/50">
           <div className="container mx-auto px-6">
-            <h2 className="text-3xl font-bold mb-10 text-center text-slate-800 dark:text-white">Related Projects</h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
-              {relatedProjects.map(related => (
-                <motion.div 
-                  key={related.id} 
-                  className="bg-white dark:bg-slate-700 rounded-xl overflow-hidden shadow-lg"
+            <h2 className="text-2xl font-bold mb-10 text-center text-slate-800 dark:text-white">Related Projects</h2>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {relatedProjects.map((relatedProject, index) => (
+                <motion.div
+                  key={relatedProject.id}
                   variants={cardVariants}
                   initial="hidden"
                   animate="visible"
-                  whileHover={{ y: -10, transition: { duration: 0.2 } }}
+                  transition={{ delay: 0.2 * index }}
+                  className="bg-white dark:bg-slate-800 rounded-xl overflow-hidden shadow-lg transition-transform hover:-translate-y-2 duration-300"
                 >
-                  <Link to={`/projects/${related.slug}`} className="block">
-                    <div className="h-56 overflow-hidden">
-                      <img
-                        src={related.image}
-                        alt={related.name}
-                        className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
-                      />
-                    </div>
-                  </Link>
+                  <div className="h-48 overflow-hidden">
+                    <img 
+                      src={relatedProject.image} 
+                      alt={relatedProject.title}
+                      className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
+                    />
+                  </div>
                   <div className="p-6">
-                    <div className="flex items-center gap-4 mb-4">
+                    <div className="flex justify-between items-start mb-4">
+                      <h3 className="text-xl font-bold text-slate-800 dark:text-white">{relatedProject.title}</h3>
                       <span className="text-xs font-medium bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 py-1 px-2 rounded-full">
-                        {related.category}
+                        {relatedProject.category.split("-").map((word: string) => word.charAt(0).toUpperCase() + word.slice(1)).join(" ")}
                       </span>
-                      <span className="text-sm text-slate-500 dark:text-slate-400">{related.completionDate}</span>
                     </div>
-                    <Link to={`/projects/${related.slug}`} className="block">
-                      <h3 className="text-xl font-bold mb-3 text-slate-800 dark:text-white hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
-                        {related.name}
-                      </h3>
-                    </Link>
-                    <p className="text-slate-600 dark:text-slate-300 mb-4">
-                      {related.shortDescription || related.description.substring(0, 120) + '...'}
-                    </p>
+                    <p className="text-slate-600 dark:text-slate-300 mb-6">{relatedProject.description}</p>
                     <Link 
-                      to={`/projects/${related.slug}`}
-                      className="text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300 font-medium inline-flex items-center"
+                      to={`/projects/${relatedProject.slug}`}
+                      className="text-blue-500 hover:text-blue-600 font-medium text-sm inline-flex items-center"
                     >
                       View Details
-                      <svg className="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <svg className="ml-1 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
                       </svg>
                     </Link>
@@ -416,7 +393,7 @@ export const ProjectDetail = () => {
               ))}
             </div>
           </div>
-        </motion.section>
+        </section>
       )}
     </Layout>
   );
