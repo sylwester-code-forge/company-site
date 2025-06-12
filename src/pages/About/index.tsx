@@ -4,7 +4,6 @@ import Teamwork from "../../assets/images/teamwork.jpg";
 import Team1 from "../../assets/images/1.jpg";
 import Team2 from "../../assets/images/2.png";
 import Team3 from "../../assets/images/3.png";
-import Team4 from "../../assets/images/4.png";
 import Team5 from "../../assets/images/5.jpg";
 
 export const About = () => {
