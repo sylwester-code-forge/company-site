@@ -5,6 +5,7 @@ import Team1 from "../../assets/images/1.jpg";
 import Team2 from "../../assets/images/2.png";
 import Team3 from "../../assets/images/3.png";
 import Team4 from "../../assets/images/4.png";
+import Team5 from "../../assets/images/5.jpg";
 
 export const About = () => {
   const team = [
@@ -21,17 +22,17 @@ export const About = () => {
       image: Team2,
     },
     {
+      name: "Vijaiaaravindh Veerapandian",
+      position: "COO",
+      bio: "Vijaiaaravindh brings a wealth of operational expertise to Code Forge, ensuring smooth project delivery and client satisfaction through strategic planning and efficient team coordination.",
+      image: Team5,
+    },
+    {
       name: "David Rodriguez",
       position: "Lead Developer",
       bio: "David oversees our development team, bringing extensive experience in building scalable and robust applications.",
       image: Team3,
-    },
-    {
-      name: "Emma Williams",
-      position: "UX/UI Director",
-      bio: "Emma ensures all our products deliver exceptional user experiences through thoughtful design and usability principles.",
-      image: Team4,
-    },
+    }
   ];
 
   const values = [
