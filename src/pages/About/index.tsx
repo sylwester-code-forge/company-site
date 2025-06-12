@@ -10,9 +10,15 @@ export const About = () => {
   const team = [
     {
       name: "Alex Johnson",
-      position: "CEO & Founder",
+      position: "CEO & Co-Founder",
       bio: "With over 15 years in the tech industry, Alex founded Code Forge with a vision to create innovative solutions that transform businesses.",
       image: Team1,
+    },
+    {
+      name: "Vijaiaaravindh Veerapandian",
+      position: "COO & Co-Founder",
+      bio: "Vijaiaaravindh brings a wealth of operational expertise to Code Forge, ensuring smooth project delivery and client satisfaction through strategic planning and efficient team coordination.",
+      image: Team5,
     },
     {
       name: "Lucas Martin",
@@ -21,17 +27,11 @@ export const About = () => {
       image: Team2,
     },
     {
-      name: "Vijaiaaravindh Veerapandian",
-      position: "COO",
-      bio: "Vijaiaaravindh brings a wealth of operational expertise to Code Forge, ensuring smooth project delivery and client satisfaction through strategic planning and efficient team coordination.",
-      image: Team5,
-    },
-    {
-      name: "David Rodriguez",
+      name: "Kenisha Robinson",
       position: "Lead Developer",
-      bio: "David oversees our development team, bringing extensive experience in building scalable and robust applications.",
+      bio: "Kenisha oversees our development team, bringing extensive experience in building scalable and robust applications.",
       image: Team3,
-    }
+    },
   ];
 
   const values = [
