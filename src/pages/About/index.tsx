@@ -16,7 +16,7 @@ export const About = () => {
     },
     {
       name: "Vijaiaaravindh Veerapandian",
-      position: "CFO & Co-Founder",
+      position: "CPO & Co-Founder",
       bio: "Vijaiaaravindh brings a wealth of operational expertise to Code Forge, ensuring smooth project delivery and client satisfaction through strategic planning and efficient team coordination.",
       image: Team5,
     },
